@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamB23.Security", "SteamB23.Security\SteamB23.Security.csproj", "{627EFB0A-D1D3-4382-9949-8FE66D1636DE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "README", "README", "{79267823-3325-42BC-B78C-D138CAAD005F}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{627EFB0A-D1D3-4382-9949-8FE66D1636DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{627EFB0A-D1D3-4382-9949-8FE66D1636DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{627EFB0A-D1D3-4382-9949-8FE66D1636DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{627EFB0A-D1D3-4382-9949-8FE66D1636DE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
