@@ -9,61 +9,33 @@ namespace System
     [Serializable]
     public struct SecureDouble : ISerializable, ISecureValueType<double>
     {
-        byte keyIndex;
-        long hash;
-        long securedValue;
+        SecureInt64 secureInt64;
 
         public SecureDouble(double value)
         {
-            // To interger
-            long iValue = BitConverter.DoubleToInt64Bits(value);
-
-            this.keyIndex = (byte)(iValue % Encrypt.keysLength);
-            long securedValue = iValue ^ Encrypt.keys[keyIndex];
-            this.hash = Hash.Compute(securedValue);
-            this.securedValue = securedValue;
+            this.secureInt64 = BitConverter.DoubleToInt64Bits(value);
         }
         public double Value
         {
             get
             {
-                if (!IsIntegrity())
-                {
-                    this.hash = Hash.Compute(Encrypt.keys[0]);
-                    this.securedValue = Encrypt.keys[0];
-                    this.keyIndex = 0;
-                }
-                return BitConverter.Int64BitsToDouble(Encrypt.Decryption(this.securedValue, this.keyIndex));
+                return BitConverter.Int64BitsToDouble(this.secureInt64);
             }
             set
             {
-                // To interger
-                long iValue = BitConverter.DoubleToInt64Bits(value);
-
-                if (IsIntegrity())
-                {
-                    long secureValue = Encrypt.Encryption(iValue, out this.keyIndex);
-                    this.hash = Hash.Compute(secureValue);
-                    this.securedValue = secureValue;
-                }
-                else
-                {
-                    this.hash = Hash.Compute(Encrypt.keys[0]);
-                    this.securedValue = Encrypt.keys[0];
-                    this.keyIndex = 0;
-                }
+                this.secureInt64 = BitConverter.DoubleToInt64Bits(value);
             }
         }
         public long RawValue
         {
             get
             {
-                return this.securedValue;
+                return this.secureInt64.RawValue;
             }
         }
         public bool IsIntegrity()
         {
-            return this.hash == Hash.Compute(this.securedValue);
+            return this.secureInt64.IsIntegrity();
         }
 
         #region Operator overloading implements
@@ -215,15 +187,11 @@ namespace System
         #region ISerializeable implements
         void ISerializable.GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("securedValue", this.securedValue);
-            info.AddValue("hash", this.hash);
-            info.AddValue("keyIndex", this.keyIndex);
+            this.secureInt64.GetObjectData(info, context);
         }
         public SecureDouble(SerializationInfo info, StreamingContext context)
         {
-            this.securedValue = info.GetInt64("securedValue");
-            this.hash = info.GetInt64("hash");
-            this.keyIndex = info.GetByte("keyIndex");
+            this.secureInt64 = new SecureInt64(info, context);
         }
         #endregion
     }
