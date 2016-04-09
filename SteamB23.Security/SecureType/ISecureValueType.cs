@@ -17,7 +17,6 @@
         /// <summary>
         /// 암호화된 값을 가져옵니다.
         /// </summary>
-        /// <returns>암호화된 값</returns>
         long RawValue
         {
             get;
