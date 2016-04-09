@@ -49,6 +49,7 @@
     <Compile Include="SecureType\SecureDouble.cs" />
     <Compile Include="SecureType\SecureInt64.cs" />
     <Compile Include="Encrypt.cs" />
+    <Compile Include="SecureType\SecureValueTypeSerializationInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
