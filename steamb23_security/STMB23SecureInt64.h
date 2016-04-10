@@ -12,6 +12,8 @@ public:
 	void setValue(long value);
 	long getRawValue();
 	bool isIntegrity();
+
+	operator long();
 private:
 	char keyIndex = 0;
 	long hash = 0;

@@ -54,3 +54,8 @@ bool STMB23SecureInt64::isIntegrity()
 	return this->hash == STMB23Security::hashCompute(this->securedValue);
 }
 
+STMB23SecureInt64::operator long()
+{
+	return this->getValue();
+}
+
