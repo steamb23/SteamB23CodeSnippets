@@ -4,26 +4,8 @@ SteamB23's Code Snippets
 
 ## 하위 프로젝트
 
-### SteamB23.Security (C#)
-이 프로젝트는 메모리 해킹을 통한 값 수정을 방지하는 기능을 포함하고 있습니다.
-
-정수 형식을 암호화하는 SecureInt64 구조체와 부동소수점 형식을 암호화하는 SecureDouble 구조체만을 지원하며 이외의 형식에 대한 암호화 구조체는 두 구조체를 통해 사용이 가능하므로 구현되어있지 않습니다.
-``` c#
-SecureInt64 a = 1000;
-long b = a + 500;
-
-b == 1500;
-```
-
-### steamb23_security (C++)
-SteamB23.Security를 C++로 포팅한 버전입니다.
-
-``` c++
-STMB23SecureInt64 a = 1000;
-long b = a + 500;
-
-b == 1500;
-```
+* SteamB23.Security (C#)
+* steamb23_security (C++)
 
 ## License
 Copyright (c) 2016 SteamB23
