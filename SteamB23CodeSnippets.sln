@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamB23.Security", "SteamB23.Security\SteamB23.Security.csproj", "{627EFB0A-D1D3-4382-9949-8FE66D1636DE}"
 EndProject
@@ -13,6 +13,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "steamb23_security", "steamb23_security\steamb23_security.vcxproj", "{9BDD71E6-DA4B-4C7E-8506-A3D6FDCD9DBF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamB23.Hangul", "SteamB23.Hangul\SteamB23.Hangul.csproj", "{E4183479-F8F9-480D-A317-71CFE256ADBC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamB23.Hangul.Josa", "SteamB23.Hangul.Josa\SteamB23.Hangul.Josa.csproj", "{D0A32C1E-37D6-4C11-89E3-FE5C66D5BAE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,6 +60,18 @@ Global
 		{E4183479-F8F9-480D-A317-71CFE256ADBC}.Release|x64.Build.0 = Release|Any CPU
 		{E4183479-F8F9-480D-A317-71CFE256ADBC}.Release|x86.ActiveCfg = Release|Any CPU
 		{E4183479-F8F9-480D-A317-71CFE256ADBC}.Release|x86.Build.0 = Release|Any CPU
+		{D0A32C1E-37D6-4C11-89E3-FE5C66D5BAE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0A32C1E-37D6-4C11-89E3-FE5C66D5BAE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0A32C1E-37D6-4C11-89E3-FE5C66D5BAE7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D0A32C1E-37D6-4C11-89E3-FE5C66D5BAE7}.Debug|x64.Build.0 = Debug|Any CPU
+		{D0A32C1E-37D6-4C11-89E3-FE5C66D5BAE7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D0A32C1E-37D6-4C11-89E3-FE5C66D5BAE7}.Debug|x86.Build.0 = Debug|Any CPU
+		{D0A32C1E-37D6-4C11-89E3-FE5C66D5BAE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0A32C1E-37D6-4C11-89E3-FE5C66D5BAE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0A32C1E-37D6-4C11-89E3-FE5C66D5BAE7}.Release|x64.ActiveCfg = Release|Any CPU
+		{D0A32C1E-37D6-4C11-89E3-FE5C66D5BAE7}.Release|x64.Build.0 = Release|Any CPU
+		{D0A32C1E-37D6-4C11-89E3-FE5C66D5BAE7}.Release|x86.ActiveCfg = Release|Any CPU
+		{D0A32C1E-37D6-4C11-89E3-FE5C66D5BAE7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
