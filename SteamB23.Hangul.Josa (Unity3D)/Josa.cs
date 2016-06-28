@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SteamB23.Hangul
 {
@@ -19,15 +15,11 @@ namespace SteamB23.Hangul
                 return instance;
             }
         }
-
-        public string Process(FormattableString text)
-        {
-            return text.ToString(this);
-        }
         public string Process(string text, params object[] args)
         {
             return string.Format(this, text, args);
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -38,7 +30,7 @@ namespace SteamB23.Hangul
         public string Format(string format, object arg, IFormatProvider formatProvider)
         {
             string text = arg.ToString();
-            if (!string.IsNullOrWhiteSpace(text))
+            if (!IsNullOrWhiteSpace(text))
             {
                 char textLast = text.Last();
                 int finalConsonantNumber = textLast >= 0xac00 && textLast <= 0xd7a3 ?
@@ -76,5 +68,21 @@ namespace SteamB23.Hangul
         {
             return formatType == typeof(ICustomFormatter) ? this : null;
         }
+        // 없는 메서드라서 직접 만듬
+        bool IsNullOrWhiteSpace(string value)
+        {
+            if (value != null)
+            {
+                for (int i = 0; i < value.Length; i++)
+                {
+                    if (!char.IsWhiteSpace(value[i]))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
     }
 }
