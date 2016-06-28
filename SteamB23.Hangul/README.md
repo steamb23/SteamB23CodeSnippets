@@ -1,12 +1,10 @@
-SteamB23's Code Snippets
-========================
-이 프로젝트들은 작업중인 프로젝트에 포함시키거나 컴파일하여 사용하는 코드조각의 모음입니다.
+﻿# SteamB23.Hangul (C#)
+한글 관련 분석 기능을 제공하는 프로젝트입니다.
 
-## 하위 프로젝트
+지원하는 기능은 다음과 같습니다.
 
-* SteamB23.Hangul (C#)
-* SteamB23.Security (C#)
-* steamb23_security (C++)
+* 자모 분리
+* 자모 조합
 
 ## MIT License
 Copyright (c) 2016 SteamB23
