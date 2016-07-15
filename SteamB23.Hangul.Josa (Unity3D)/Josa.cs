@@ -12,9 +12,15 @@ using System.Linq;
 
 namespace SteamB23.Hangul
 {
+    /// <summary>
+    /// 한국어의 조사 처리 기능을 제공하는 클래스입니다.
+    /// </summary>
     public class Josa : IFormatProvider, ICustomFormatter
     {
         static Josa instance;
+        /// <summary>
+        /// 해당 클래스의 단일 인스턴스를 가져옵니다.
+        /// </summary>
         public static Josa Instance
         {
             get
@@ -24,11 +30,18 @@ namespace SteamB23.Hangul
                 return instance;
             }
         }
-        public string Process(string text, params object[] args)
+        /// <summary>
+        /// 지정된 문자열의 형식 항목을 지정된 배열에 있는 해당 개체의 문자열 표현으로 바꿉니다.
+        /// </summary>
+        /// <param name="format">합성 서식 문자열입니다.</param>
+        /// <param name="args">형식을 지정할 개체를 0개 이상 포함하는 개체 배열입니다.</param>
+        /// <returns>형식 항목을 format에 있는 해당 개체의 문자열 표현으로 바꾼 args의 복사본입니다.</returns>
+        /// <exception cref="ArgumentNullException">format 또는 args가 null인 경우.</exception>
+        /// <exception cref="FormatException">format이 잘못되었거나 서식 항목의 인덱스가 0보다 작거나 보다 args 배열의 길이보다 큰 경우.</exception>
+        public string Process(string format, params object[] args)
         {
-            return string.Format(this, text, args);
+            return string.Format(this, format, args);
         }
-
         /// <summary>
         /// 
         /// </summary>
@@ -72,7 +85,11 @@ namespace SteamB23.Hangul
             else
                 return lastCharHaveJongseong;
         }
-
+        /// <summary>
+        /// 지정된 형식에 대한 형식 지정 서비스를 제공하는 개체를 반환합니다.
+        /// </summary>
+        /// <param name="formatType">반환할 형식 개체의 형식을 지정하는 개체입니다.</param>
+        /// <returns>System.IFormatProvider 구현에서 해당 형식의 개체를 제공할 수 있으면 formatType에 지정된 개체의 인스턴스이고, 그렇지 않으면 null입니다.</returns>
         public object GetFormat(Type formatType)
         {
             return formatType == typeof(ICustomFormatter) ? this : null;

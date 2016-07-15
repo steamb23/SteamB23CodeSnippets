@@ -20,33 +20,48 @@ namespace SteamB23.Hangul
         static int InternalGetVowel(char value) => ((value - 0xc00) % (21 * 28)) / 28;
         static int InternalGetFinalConsonant(char value) => ((value - 0xc00) % (21 * 28)) % 28;
 
+        /// <summary>
+        /// 완성형 한글에서 초성을 가져옵니다.
+        /// </summary>
+        /// <param name="value">완성형 한글 문자</param>
+        /// <returns>초성 문자</returns>
         public static char GetInitialConsonant(char value)
         {
             if (value >= 0xac00 && value <= 0xd7a3)
             {
-                return (char)(InternalGetInitialConsonant(value) + 0xc00);
+                return (char)(InternalGetInitialConsonant(value) + 0x1100);
             }
             else
             {
                 return value;
             }
         }
+        /// <summary>
+        /// 완성형 한글에서 중성을 가져옵니다.
+        /// </summary>
+        /// <param name="value">완성형 한글 문자</param>
+        /// <returns>중성 문자</returns>
         public static char GetVowel(char value)
         {
             if (value >= 0xac00 && value <= 0xd7a3)
             {
-                return (char)(InternalGetVowel(value) + 0xc00);
+                return (char)(InternalGetVowel(value) + 0x1161);
             }
             else
             {
                 return value;
             }
         }
+        /// <summary>
+        /// 완성형 한글에서 종성을 가져옵니다.
+        /// </summary>
+        /// <param name="value">완성형 한글 문자</param>
+        /// <returns>종성 문자</returns>
         public static char GetFinalConsonant(char value)
         {
             if (value >= 0xac00 && value <= 0xd7a3)
             {
-                return (char)(InternalGetFinalConsonant(value) + 0xc00);
+                return (char)(InternalGetFinalConsonant(value) + 0x11a7);
             }
             else
             {

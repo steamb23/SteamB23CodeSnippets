@@ -9,9 +9,17 @@
  */
 namespace SteamB23.Security
 {
+    /// <summary>
+    /// 간단하고 빠른 64비트 해시 생성기입니다.
+    /// </summary>
     public static class Hash
     {
         const long salt = -1703559228456993676;
+        /// <summary>
+        /// 해시 값을 계산합니다.
+        /// </summary>
+        /// <param name="value">해시 값을 계산할 값</param>
+        /// <returns>해시 값</returns>
         public static long Compute(long value)
         {
             value ^= -salt;

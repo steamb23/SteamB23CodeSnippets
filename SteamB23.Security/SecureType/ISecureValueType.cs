@@ -30,6 +30,10 @@ namespace SteamB23.Security
         {
             get;
         }
+        /// <summary>
+        /// 현재 값에 대한 무결성을 검사합니다.
+        /// </summary>
+        /// <returns>현재 값과 내부 해시 값이 일치하면 true, 그렇지 않으면 false입니다.</returns>
         bool IsIntegrity();
     }
 }
