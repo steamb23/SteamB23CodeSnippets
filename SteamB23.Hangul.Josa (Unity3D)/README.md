@@ -1,14 +1,23 @@
-SteamB23's Code Snippets
-========================
-이 프로젝트들은 작업중인 프로젝트에 포함시키거나 컴파일하여 사용하는 코드조각의 모음입니다.
+﻿# SteamB23.Hangul.Josa (C#)
+한국어의 조사를 마지막에 오는 종성에 따라 자동으로 결정해주는 기능을 제공하는 프로젝트입니다.
 
-## 하위 프로젝트
+포맷 문자열에서 '{인자 번호:받침조사/무받침조사}' 와 같이 사용할 수 있습니다.
 
-* SteamB23.Hangul (C#)
-* SteamB23.Hangul.Josa (C#)
-* SteamB23.Hangul.Josa (C#, Unity3D)
-* SteamB23.Security (C#)
-* steamb23_security (C++)
+이 프로젝트는 Unity3D의 런타임에서 돌아갈 수 있도록 재구성하였습니다.
+
+## 사용 예
+### Format String
+```C#
+// Josa josa = new Josa();
+Josa josa = Josa.Instance;
+string formatString = @"{0:은/는} {1:이/}다.";
+
+// "서울은 대도시다."
+josa.Process(formatString, "서울", "대도시");
+// "사과는 과일이다."
+josa.Process(formatString, "사과", "과일");
+```
+
 
 ## MIT License
 Copyright (c) 2016 SteamB23
