@@ -45,13 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SecureType\ISecureValueType.cs" />
-    <Compile Include="Hash.cs" />
+    <Compile Include="ISecureValueType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SecureType\SecureDouble.cs" />
-    <Compile Include="SecureType\SecureInt64.cs" />
-    <Compile Include="Encrypt.cs" />
-    <Compile Include="SecureType\SecureValueTypeSerializationInfo.cs" />
+    <Compile Include="SecureDouble.cs" />
+    <Compile Include="SecureInt64.cs" />
+    <Compile Include="SecureValueTypeSerializationInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
