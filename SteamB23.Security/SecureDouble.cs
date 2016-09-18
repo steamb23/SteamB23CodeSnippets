@@ -39,7 +39,7 @@ namespace System
             }
             set
             {
-                this.secureInt64 = BitConverter.DoubleToInt64Bits(value);
+                this.secureInt64.Value = BitConverter.DoubleToInt64Bits(value);
             }
         }
         /// <summary>

@@ -39,23 +39,13 @@ namespace System
             {
                 if (!IsIntegrity())
                 {
-                    this.hash = HashCompute(0);
-                    this.value = 0;
+                    SetValue(0);
                 }
                 return value;
             }
             set
             {
-                if (IsIntegrity())
-                {
-                    this.hash = HashCompute(value);
-                    this.value = value;
-                }
-                else
-                {
-                    this.hash = HashCompute(0);
-                    this.value = 0;
-                }
+                SetValue(value);
             }
         }
         void SetValue(long value)
