@@ -18,7 +18,7 @@ namespace System
     [Serializable]
     public struct SecureInt64 : ISerializable, ISecureValueType<long>
     {
-        short checksum;
+        long hash;
         long value;
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace System
         /// <param name="value">부호있는 64비트 정수입니다.</param>
         public SecureInt64(long value)
         {
-            this.checksum = ChecksumCompute(value);
+            this.hash = HashCompute(value);
             this.value = value;
         }
         /// <summary>
@@ -39,7 +39,7 @@ namespace System
             {
                 if (!IsIntegrity())
                 {
-                    this.checksum = ChecksumCompute(0);
+                    this.hash = HashCompute(0);
                     this.value = 0;
                 }
                 return value;
@@ -48,19 +48,19 @@ namespace System
             {
                 if (IsIntegrity())
                 {
-                    this.checksum = ChecksumCompute(value);
+                    this.hash = HashCompute(value);
                     this.value = value;
                 }
                 else
                 {
-                    this.checksum = ChecksumCompute(0);
+                    this.hash = HashCompute(0);
                     this.value = 0;
                 }
             }
         }
         void SetValue(long value)
         {
-            this.checksum = ChecksumCompute(value);
+            this.hash = HashCompute(value);
             this.value = value;
         }
         /// <summary>
@@ -69,7 +69,7 @@ namespace System
         /// <returns>현재 값과 내부 해시 값이 일치하면 true, 그렇지 않으면 false입니다.</returns>
         public bool IsIntegrity()
         {
-            return this.checksum == ChecksumCompute(this.value);
+            return this.hash == HashCompute(this.value);
         }
         #region 연산자 오버로딩 구현
         ///
@@ -354,7 +354,7 @@ namespace System
             return new SecureInt64(value);
         }
         ///
-        public static implicit operator long (SecureInt64 value)
+        public static implicit operator long(SecureInt64 value)
         {
             return value.Value;
         }
@@ -397,7 +397,7 @@ namespace System
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("securedValue", this.value);
-            info.AddValue("checksum", this.checksum);
+            info.AddValue("checksum", this.hash);
         }
         /// <summary>
         /// <see cref="SerializationInfo"/>를 사용하여 <see cref="SecureInt64"/>의 인스턴스를 초기화합니다.
@@ -407,27 +407,25 @@ namespace System
         public SecureInt64(SerializationInfo info, StreamingContext context)
         {
             this.value = info.GetInt64("securedValue");
-            this.checksum = info.GetByte("checksum");
+            this.hash = info.GetByte("checksum");
         }
         #endregion
 
-        #region 체크섬
-        const short ChecksumSalt = 0x7c74;
+        #region 해시
+        const long HashSalt = -1703559228456993676;
         /// <summary>
-        /// 체크섬을 계산합니다.
+        /// 해시를 계산합니다.
         /// </summary>
         /// <param name="value">해시 값을 계산할 값</param>
         /// <returns>해시 값</returns>
-        public static short ChecksumCompute(long value)
+        public static long HashCompute(long value)
         {
-            short result;
-            do
-            {
-                result = (short)(value);
-                result ^= ChecksumSalt;
-            }
-            while ((value >>= 16) == 0);
-            return result;
+            value ^= -HashSalt;
+            value ^= (value << 26);
+            value ^= (value >> 18);
+            value ^= ~(value << 55);
+            value ^= (value >> 48);
+            return value;
         }
         #endregion
     }
