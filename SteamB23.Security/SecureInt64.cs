@@ -121,7 +121,7 @@ namespace System
         public SecureInt64(SerializationInfo info, StreamingContext context)
         {
             this.value = info.GetInt64("securedValue");
-            this.hash = info.GetByte("checksum");
+            this.hash = info.GetInt64("checksum");
         }
         #endregion
 
