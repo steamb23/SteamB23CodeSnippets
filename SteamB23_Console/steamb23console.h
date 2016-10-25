@@ -234,22 +234,6 @@ namespace SteamB23 {
 	};
 	class Console
 	{
-	private:
-		// C# System.Console 포팅용 변수
-		static INPUT_RECORD _cachedInputRecord;
-		static BYTE _defaultColors;
-		static BOOL _haveReadDefaultColors;
-
-		static HANDLE GetConsoleInputHandle();
-		static HANDLE GetConsoleOutputHandle();
-
-		static WORD ConsoleColorToColorAttribute(ConsoleColor color, bool isBackground);
-		static ConsoleColor ColorAttributeToConsoleColor(WORD c);
-
-		static CONSOLE_SCREEN_BUFFER_INFO GetBufferInfo();
-		static CONSOLE_SCREEN_BUFFER_INFO GetBufferInfo(bool throwOnNoConsole, bool & succeeded);
-
-		static bool IsModKey(INPUT_RECORD ir);
 	public:
 		// 키를 읽습니다.
 		static ConsoleKeyInfo ReadKey();
@@ -277,5 +261,21 @@ namespace SteamB23 {
 		static bool SetCursorLeft(int value);
 		static int GetCursorTop();
 		static bool SetCursorTop(int value);
+	private:
+		// C# System.Console 포팅용 변수
+		static INPUT_RECORD _cachedInputRecord;
+		static BYTE _defaultColors;
+		static BOOL _haveReadDefaultColors;
+
+		static HANDLE GetConsoleInputHandle();
+		static HANDLE GetConsoleOutputHandle();
+
+		static WORD ConsoleColorToColorAttribute(ConsoleColor color, bool isBackground);
+		static ConsoleColor ColorAttributeToConsoleColor(WORD c);
+
+		static CONSOLE_SCREEN_BUFFER_INFO GetBufferInfo();
+		static CONSOLE_SCREEN_BUFFER_INFO GetBufferInfo(bool throwOnNoConsole, bool & succeeded);
+
+		static bool IsModKey(INPUT_RECORD ir);
 	};
 }
