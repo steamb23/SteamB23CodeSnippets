@@ -263,6 +263,23 @@ void Console::ResetColor()
 	SetConsoleTextAttribute(GetConsoleOutputHandle(), defaultAttrs);
 }
 
+void SteamB23::Console::Write(char* text)
+{
+	WriteFile(GetConsoleOutputHandle(), text, strlen(text), 0, 0);
+}
+
+void SteamB23::Console::WriteLine()
+{
+	char ch = '\n';
+	WriteFile(GetConsoleOutputHandle(), &ch, 1, 0, 0);
+}
+
+void SteamB23::Console::WriteLine(char * text)
+{
+	Write(text);
+	WriteLine();
+}
+
 bool Console::SetCursorPosition(int left, int top)
 {
 	if (left < 0 || left >= INT16_MAX)

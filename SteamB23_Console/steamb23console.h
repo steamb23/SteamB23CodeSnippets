@@ -255,6 +255,13 @@ namespace SteamB23 {
 		// 색설정을 초기화합니다.
 		static void ResetColor();
 
+		// 텍스트를 콘솔에 씁니다.
+		static void Write(char* text);
+		// 한칸 띄웁니다.
+		static void WriteLine();
+		// 텍스트를 콘솔에 쓰고 한칸 띄웁니다.
+		static void WriteLine(char* text);
+
 		// 커서의 위치를 설정합니다.
 		static bool SetCursorPosition(int left, int top);
 		static int GetCursorLeft();
