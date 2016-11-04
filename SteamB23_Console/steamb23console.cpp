@@ -205,6 +205,119 @@ bool Console::SetTitle(LPCTSTR value)
 	return SetConsoleTitle(value) != 0;
 }
 
+int SteamB23::Console::GetBufferHeight()
+{
+	CONSOLE_SCREEN_BUFFER_INFO csbi = GetBufferInfo();
+	return csbi.dwSize.Y;
+}
+
+void SteamB23::Console::SetBufferHeight(int value)
+{
+	SetBufferSize(GetBufferWidth(), value);
+}
+
+int SteamB23::Console::GetBufferWidth()
+{
+	CONSOLE_SCREEN_BUFFER_INFO csbi = GetBufferInfo();
+	return csbi.dwSize.X;
+}
+
+void SteamB23::Console::SetBufferWidth(int value)
+{
+	SetBufferSize(value, GetBufferHeight());
+}
+
+void SteamB23::Console::SetBufferSize(int width, int height)
+{
+	CONSOLE_SCREEN_BUFFER_INFO csbi = GetBufferInfo();
+	SMALL_RECT srWindow = csbi.srWindow;
+	if (width < srWindow.Right + 1 || width >= INT16_MAX)
+		throw "width의 값이 범위를 넘어갔습니다.";
+	if (height < srWindow.Bottom + 1 || height >= INT16_MAX)
+		throw "height의 값이 범위를 넘어갔습니다.";
+
+	COORD size;
+	size.X = (SHORT)width;
+	size.Y = (SHORT)height;
+	bool r = SetConsoleScreenBufferSize(GetConsoleOutputHandle(), size);
+}
+
+int SteamB23::Console::GetWindowHeight()
+{
+	CONSOLE_SCREEN_BUFFER_INFO csbi = GetBufferInfo();
+	return csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+}
+
+void SteamB23::Console::SetWindowHeight(int value)
+{
+	SetWindowSize(GetWindowWidth(), value);
+}
+
+int SteamB23::Console::GetWindowWidth()
+{
+	CONSOLE_SCREEN_BUFFER_INFO csbi = GetBufferInfo();
+	return csbi.srWindow.Bottom - csbi.srWindow.Left + 1;
+}
+
+void SteamB23::Console::SetWindowWidth(int value)
+{
+	SetWindowSize(value, GetWindowHeight());
+}
+
+void SteamB23::Console::SetWindowSize(int width, int height)
+{
+	if (width <= 0)
+		throw "width는 0이거나 그 보다 작을 수 없습니다.";
+	if (height <= 0)
+		throw "height는 0이거나 그 보다 작을 수 없습니다.";
+
+	CONSOLE_SCREEN_BUFFER_INFO csbi = GetBufferInfo();
+	bool r;
+
+	bool resizeBuffer = false;
+	COORD size;
+	size.X = csbi.dwSize.X;
+	size.Y = csbi.dwSize.Y;
+	if (csbi.dwSize.X < csbi.srWindow.Left + width)
+	{
+		if (csbi.srWindow.Left >= INT16_MAX - width)
+			throw "width가 너무 큽니다.";
+		size.X = (SHORT)(csbi.srWindow.Left + width);
+		resizeBuffer = true;
+	}
+	if (csbi.dwSize.Y < csbi.srWindow.Top + height)
+	{
+		if (csbi.srWindow.Top >= INT16_MAX - height)
+			throw "height가 너무 큽니다.";
+		size.Y = (SHORT)(csbi.srWindow.Top + height);
+		resizeBuffer = true;
+	}
+	if (resizeBuffer)
+	{
+		r = SetConsoleScreenBufferSize(GetConsoleOutputHandle(), size);
+	}
+	SMALL_RECT srWindow = csbi.srWindow;
+	srWindow.Bottom = (SHORT)(srWindow.Top + height - 1);
+	srWindow.Right = (SHORT)(srWindow.Left + width - 1);
+
+	r = SetConsoleWindowInfo(GetConsoleOutputHandle(), true, &srWindow);
+	if (!r)
+	{
+		int errorCode = GetLastError();
+
+		if (resizeBuffer)
+		{
+			SetConsoleScreenBufferSize(GetConsoleOutputHandle(), csbi.dwSize);
+		}
+
+		COORD bounds = GetLargestConsoleWindowSize(GetConsoleOutputHandle());
+		if (width > bounds.X)
+			throw "width가 너무 큽니다.";
+		if (height > bounds.Y)
+			throw "height가 너무 큽니다.";
+	}
+}
+
 ConsoleColor Console::GetBackgroundColor()
 {
 	bool succeeded;

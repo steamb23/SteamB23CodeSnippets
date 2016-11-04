@@ -244,6 +244,18 @@ namespace SteamB23 {
 		// 타이틀을 설정합니다.
 		static bool SetTitle(LPCTSTR value);
 
+		static int GetBufferHeight();
+		static void SetBufferHeight(int value);
+		static int GetBufferWidth();
+		static void SetBufferWidth(int value);
+		static void SetBufferSize(int width, int height);
+
+		static int GetWindowHeight();
+		static void SetWindowHeight(int value);
+		static int GetWindowWidth();
+		static void SetWindowWidth(int value);
+		static void SetWindowSize(int width, int height);
+
 		// 배경색을 가져옵니다.
 		static ConsoleColor GetBackgroundColor();
 		// 배경색을 설정합니다.
